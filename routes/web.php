@@ -16,3 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+/**
+ * Product Management
+ */
+Route::get('/products', 'ProductController@index');
+
+/**
+ * Order Management
+ */
+Route::get('/orders', 'OrderController@index');
+Route::post('/order/create', 'OrderController@create');
+Route::post('/order/delete', 'OrderController@destroy');
+Route::post('/order/show', 'OrderController@show');
+Route::post('/order/update', 'OrderController@update');
+Route::post('/order/getOrders', 'OrderController@getAll');
