@@ -12,7 +12,8 @@ class ProductOrder extends Model
 
     public $timestamps = false;
 
-    public function getProductsOfOrder($idOrder){
-        return ProductOrder::where('order_id',$idOrder)->join('products','product_order.product_id','=','products.id')->get();
+    public function getProductsOfOrder($idOrder)
+    {
+        return ProductOrder::where('order_id', $idOrder)->join('products', 'product_order.product_id', '=', 'products.id')->get();
     }
 }

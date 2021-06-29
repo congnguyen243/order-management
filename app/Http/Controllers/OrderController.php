@@ -14,7 +14,8 @@ class OrderController extends Controller
     protected $productRepo;
     protected $productOrder;
 
-    public function __construct(OrderRepositoryInterface $orderRepo, ProductRepositoryInterface $productRepo){
+    public function __construct(OrderRepositoryInterface $orderRepo, ProductRepositoryInterface $productRepo)
+    {
         $this->orderRepo = $orderRepo;
         $this->productRepo = $productRepo;
         $this->productOrder = new ProductOrder();
@@ -24,7 +25,7 @@ class OrderController extends Controller
     {
         $data = $this->orderRepo->getAll();
         $dataProduct = $this->productRepo->getAll();
-        return view('order.index')->with('orders',$data)->with('dataProduct',$dataProduct);  
+        return view('order.index')->with('orders', $data)->with('dataProduct', $dataProduct);
     }
 
     /**
@@ -50,13 +51,15 @@ class OrderController extends Controller
             'note' => 'max:300'
         ]);
 
-        if($request->hasFile('avatar')){  
+        if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->storeAs(
-                'imgs', $request->file('avatar')->getClientOriginalName(),'public'
-            );  
+                'imgs',
+                $request->file('avatar')->getClientOriginalName(),
+                'public'
+            );
             $params['avatar']=$path;
         }
-        $order= $this->orderRepo->storeOrder($params,$items);
+        $order= $this->orderRepo->storeOrder($params, $items);
         $result = array(
             'status' => '200',
             'data' => $params
@@ -83,8 +86,8 @@ class OrderController extends Controller
             'products'=>$products
         );
         
-        if($request->ajax()){        
-            return view('order.form-order')->with('orderItem',$order)->with('dataProduct',$products)->with('productOfOrder',$productOrder);
+        if ($request->ajax()) {
+            return view('order.form-order')->with('orderItem', $order)->with('dataProduct', $products)->with('productOfOrder', $productOrder);
         };
     }
 
@@ -94,11 +97,12 @@ class OrderController extends Controller
      * @param Request $request
      * @return void
      */
-    public function getAll(Request $request){
+    public function getAll(Request $request)
+    {
         $data = $this->orderRepo->getAll();
 
-        if($request->ajax()){
-            return view('order.data-content')->with('orders',$data);
+        if ($request->ajax()) {
+            return view('order.data-content')->with('orders', $data);
         }
     }
 
@@ -141,14 +145,16 @@ class OrderController extends Controller
             'note' => 'max:300'
         ]);
         
-        if($request->hasFile('avatar')){  
+        if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->storeAs(
-                'imgs', $request->file('avatar')->getClientOriginalName(),'public'
-            );  
+                'imgs',
+                $request->file('avatar')->getClientOriginalName(),
+                'public'
+            );
             $params['avatar']=$path;
         }
 
-        $this->orderRepo->updateOrder($params,$items);
+        $this->orderRepo->updateOrder($params, $items);
         $result = array(
             'status' => '200',
             'data' => $params

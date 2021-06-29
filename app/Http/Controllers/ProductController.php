@@ -22,7 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = $this->productRepo->getAll(); 
-        return view('product.index')->with('products',$data);  
+        $data = $this->productRepo->getAll();
+        return view('product.index')->with('products', $data);
     }
 }
