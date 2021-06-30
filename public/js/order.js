@@ -19,7 +19,7 @@
             })
 
             // When the user clicks anywhere outside of the modal, close it
-            var modal = $('#myModal').get(0);
+            var modal = $('#myModal').get(0); 
 
             window.onclick = function (event) {
                 if (event.target == modal) {
@@ -64,6 +64,11 @@
                         console.log(qty, price);
                         sum += price * qty;
                         total_quantity += 1 * qty;
+                    }
+                    else{
+                        var quantity = $(this).find('.quantity-product');
+                        quantity.attr("disabled", true);
+                        var qty = quantity.val(0);
                     }
                 })
                 $("#total-quantity").text(total_quantity);
@@ -153,6 +158,10 @@
                             alert("Created order")
                             getListContent();
                             $('.modal').css("display", "none");
+                            $('#form-order').get(0).reset();
+                            $('.quantity-product').each(function(){
+                                $(this).prop('disabled', true);
+                            })
                         },
                         error: function (res) {
                             $("#noti_err").empty();

@@ -25,13 +25,13 @@
                                     <label class="order-form-label">Full Name </label>
                                 </div>
                                 <div class="col-6 col-sm-6">
-                                    <input id="edit-order-name" class="order-form-input" type="text" name="name"
+                                    <input class="order-form-input" type="text" name="name"
                                         value="{{$orderItem->name}}">
                                 </div>
-                                <div class="col-6 col-sm-6 mt-2 mt-sm-0">
+                                <div class="col-6 col-sm-6 mt-2 mt-sm-0" style="position: relative">
                                     <input class="order-form-input" id="edit-upload-order-avt" type="file"
                                         name="avatar">
-                                    <img id="edit-order-avt" alt="img" src="{{ asset('/storage/') }}"
+                                    <img id="edit-order-avt" alt="img" src="{{ asset('/storage/') }}/{{ $orderItem->avatar}}"
                                         style="width: 100px; height: 100px; object-fit: cover;" />
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-12">
                                     <input class="order-form-input" placeholder="Phone Number" type="tel"
-                                        pattern="[0]{1}[0-9]{9}" name="phone" id="edit-order-phone"
+                                        pattern="[0]{1}[0-9]{9}" name="phone"
                                         value="{{ $orderItem->phone}}">
                                     <br><small>Format: 0123456789</small><br>
                                 </div>
@@ -51,8 +51,7 @@
                                     <label class="order-form-label">Address</label>
                                 </div>
                                 <div class="col-12">
-                                    <input class="order-form-input" placeholder="Address" name="address"
-                                        id="edit-order-address" value="{{ $orderItem->address}}">
+                                    <input class="order-form-input" placeholder="Address" name="address" value="{{ $orderItem->address}}">
                                 </div>
                             </div>
                             <div class="row mt-3 mx-4">
@@ -60,8 +59,7 @@
                                     <label class="order-form-label">Email </label>
                                 </div>
                                 <div class="col-12">
-                                    <input class="order-form-input" placeholder="Email" type="email" name="email"
-                                        id="edit-order-email" value="{{ $orderItem->email}}">
+                                    <input class="order-form-input" placeholder="Email" type="email" name="email" value="{{ $orderItem->email}}">
                                 </div>
                             </div>
                             <div class="row mt-3 mx-4">
@@ -69,8 +67,7 @@
                                     <label class="order-form-label" for="date-picker-example">Date Order</label>
                                 </div>
                                 <div class="col-12">
-                                    <input class="order-form-input datepicker" placeholder="Selected date" type="text"
-                                        name="date" id="edit-order-date" value={{ $orderItem->date}}>
+                                    <input class="order-form-input datepicker" placeholder="Selected date" type="text" name="date" value={{ $orderItem->date}}>
                                 </div>
                             </div>
                             <div class="row mt-3 mx-4">
@@ -78,8 +75,7 @@
                                     <label class="order-form-label">Note</label>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control" rows="2" name="note" id="order-note"
-                                        value={{$orderItem->note}}></textarea>
+                                    <textarea class="form-control" rows="2" name="note" value={{$orderItem->note}}></textarea>
                                 </div>
                             </div>
                             <div class="row mt-3 mx-4">
