@@ -158,7 +158,7 @@
                             alert("Created order")
                             getListContent();
                             $('.modal').css("display", "none");
-                            $('#form-order').get(0).reset();
+                            // $('#form-order').get(0).reset();
                             $('.quantity-product').each(function(){
                                 $(this).prop('disabled', true);
                             })
@@ -166,6 +166,7 @@
                         error: function (res) {
                             $("#noti_err").empty();
                             var er = res.responseJSON.errors;
+                            console.log(er);
                             for (const property in er) {
                                 $("#noti_err").append(`
                                 <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="true"  data-delay="0" style="">

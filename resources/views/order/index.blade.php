@@ -6,9 +6,8 @@ Order Management
 <link rel="stylesheet" href="/css/order.css?<?php echo time();?>">
 @endsection
 @section('page_javascript')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
     crossorigin="anonymous"></script>
@@ -61,13 +60,11 @@ $.ajaxSetup({
                                             <div class="col-12 mb-2">
                                                 <label class="order-form-label">Full Name *</label>
                                             </div>
-                                            <div class="col-12 col-sm-6">
-                                                <input class="order-form-input" type="text" id="name-customer"
-                                                    placeholder="Full Name" name="name" value="{{ old('name') }}">
-                                                <!-- <p class="help is-danger alert alert-danger" role="alert" id="error-name">{{ $errors->first('name') }}</p> -->
+                                            <div class="col-12 col-sm-6" style="padding-left: 7px;">
+                                                <input class="form-control" type="text" id="name-customer" placeholder="Full Name" name="name" value="{{ old('name') }}">
                                             </div>
                                             <div class="col-12 col-sm-6 mt-2 mt-sm-0">
-                                                <input class="order-form-input" type="file" name="avatar"
+                                                <input class="form-control" type="file" name="avatar"
                                                     id="file-avatar">
                                             </div>
                                         </div>
@@ -76,7 +73,7 @@ $.ajaxSetup({
                                                 <label class="order-form-label">Phone Number *</label>
                                             </div>
                                             <div class="col-12">
-                                                <input class="order-form-input" id="phone-customer"
+                                                <input class="form-control" id="phone-customer"
                                                     placeholder="Phone Number" type="tel" pattern="[0]{1}[0-9]{9}"
                                                     name="phone" value="{{ old('phone') }}">
                                                 <br><small>Format: 0123456789</small><br>
@@ -87,7 +84,7 @@ $.ajaxSetup({
                                                 <label class="order-form-label">Address *</label>
                                             </div>
                                             <div class="col-12">
-                                                <input class="order-form-input" id="address-customer"
+                                                <input class="form-control" id="address-customer"
                                                     placeholder="Address" name="address" value="{{ old('address') }}">
                                             </div>
                                         </div>
@@ -96,7 +93,7 @@ $.ajaxSetup({
                                                 <label class="order-form-label">Email *</label>
                                             </div>
                                             <div class="col-12">
-                                                <input class="order-form-input" id="mail-customer" placeholder="Email"
+                                                <input class="form-control" id="mail-customer" placeholder="Email"
                                                     type="email" name="email" value="{{ old('email') }}">
                                             </div>
                                         </div>
@@ -106,7 +103,7 @@ $.ajaxSetup({
                                                     *</label>
                                             </div>
                                             <div class="col-12">
-                                                <input class="order-form-input datepicker" placeholder="Selected date"
+                                                <input class="form-control datepicker" placeholder="Selected date"
                                                     type="text" id="date-picker-example" name="date"
                                                     value="{{ old('date') }}">
                                             </div>

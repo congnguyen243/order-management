@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductOrder;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Mews\Purifier\Facades\Purifier;
+use Illuminate\Support\Facades\Storage;
 use App\Repositories\Order\OrderRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
-use Illuminate\Support\Facades\Storage;
-use App\Models\ProductOrder;
 
 class OrderController extends Controller
 {
@@ -36,9 +38,17 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        $params = $request->all();
-        $items = $request['item'];
+        $params = Purifier::clean($request->except(['note']));
+        
+        //remove tag <p></p>
+        $input = $params;
+        array_walk_recursive($input, function (&$input) {
+            $input = strip_tags($input);
+        });
+        $params = $input;
 
+        $items = $request['item'];
+        
         $validated = $request->validate([
             'name' => 'required|string|max:25',
             'phone' => 'required|digits:10',
@@ -60,9 +70,10 @@ class OrderController extends Controller
             $params['avatar']=$path;
         }
         $order= $this->orderRepo->storeOrder($params, $items);
+
         $result = array(
             'status' => '200',
-            'data' => $params
+            'data' => $params,
         );
 
         return response()->json($result);
@@ -76,7 +87,7 @@ class OrderController extends Controller
      */
     public function show(Request $request)
     {
-        $id = $request['id'];
+        $id = Purifier::clean($request->all());
         $order= $this->orderRepo->find($id);
         $productOrder = $this->productOrder->getProductsOfOrder($id);
         $products = $this->productRepo->getAll();

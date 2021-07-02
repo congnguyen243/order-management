@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
         <div class="">
-            <div class="container d-flex justify-content-end mt-100">
+            <div class="mt-100">
                 <div class="input-group-overlay d-none d-lg-flex mx-4">
                     <input class="form-control appended-form-control" type="text" placeholder="Search for order">
                     <div class="input-group-append-overlay">
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <br />
-            <div class="row">
+            <div class="">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
