@@ -333,8 +333,7 @@
     $(document).ready(function () {
         var homeObj = new homeCls();
         homeObj.run();
-        // initEvents();
-        // On resize
+        
         $(window).resize(function () {
             homeObj.resize();
         });
