@@ -30,37 +30,39 @@
                     </thead>
                     <tbody>
                         <!-- OrderList -->
-                        @foreach($orders as $row)
-                        <tr>
-                            <td>
-                                {{$loop->index + 1}}
-                            </td>
-                            <td style="width:80px">
-                                <img src="{{ asset('/storage/'.$row->avatar) }}"
-                                    style="width: 100px; height: 100px; object-fit: cover;">
-                            </td>
-                            <td>
-                                {{$row->name}}
-                            </td>
-                            <td style="width:220px">
-                                {{$row->phone}}
-                            </td>
-                            <td>
-                                {{$row->date}}
-                            </td>
-                            <td>
-                                {{$row->quantity}}
-                            </td>
-                            <td>
-                                {{$row->total}}
-                            </td>
-                            <td>
-                                <a data-order="{{$row->id}}" class="btn btn-primary btn-detail-order">View</a>
-                                &nbsp;
-                                <a data-order="{{$row->id}}" class="btn-delete btn btn-secondary order-delete-btn"
-                                    data-confirm="Are you sure to delete this item?">Delete</a>
-                            </td>
-                        </tr>
+                        @foreach ($orders as $row)
+                            <tr>
+                                <td>
+                                    {{ $loop->index + 1 }}
+                                </td>
+                                <td style="width:80px">
+                                    <img src="{{ asset('/storage/' . $row->avatar) }}"
+                                        style="width: 100px; height: 100px; object-fit: cover;">
+                                </td>
+                                <td>
+                                    {{ $row->name }}
+                                </td>
+                                <td style="width:220px">
+                                    {{ $row->phone }}
+                                </td>
+                                <td>
+                                    {{ $row->date }}
+                                </td>
+                                <td>
+                                    {{ $row->quantity }}
+                                </td>
+                                <td>
+                                    {{ $row->total }}
+                                </td>
+                                <td>
+                                    <a data-order="{{ $row->id }}"
+                                        class="btn btn-primary btn-detail-order">View</a>
+                                    &nbsp;
+                                    <a data-order="{{ $row->id }}"
+                                        class="btn-delete btn btn-secondary order-delete-btn"
+                                        data-confirm="Are you sure to delete this item?">Delete</a>
+                                </td>
+                            </tr>
                         @endforeach
 
                         <!-- modal-detail-block -->

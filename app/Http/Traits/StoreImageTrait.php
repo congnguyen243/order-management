@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 trait StoreImageTrait{
 
-    public function verifyAndStoreImage( Request $request, $fieldname = 'image', $directory = 'unknown' ) {
+    public function verifyAndStoreImage( Request $request, $fieldname, $directory ) {
  
-        if( $request->hasFile( $fieldname ) ) {
+        if( $request->hasFile('avatar') ) {
  
             $path = $request->file($fieldname)->storeAs(
                 'imgs/'.$directory,
@@ -19,8 +19,6 @@ trait StoreImageTrait{
             return $path;
  
         }
- 
-        return null;
- 
+        
     }
 }

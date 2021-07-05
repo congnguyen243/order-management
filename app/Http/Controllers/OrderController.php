@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Repositories\Order\OrderRepositoryInterface;
 use App\Repositories\Product\ProductRepositoryInterface;
 
-
 class OrderController extends Controller
 {
     use StoreImageTrait;
@@ -42,17 +41,10 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        $params = Purifier::clean($request->except(['note']));
-
-        //remove tag <p></p>
-        $input = $params;
-        array_walk_recursive($input, function (&$input) {
-            $input = strip_tags($input);
-        });
-        $params = $input;
+        $params = $request->only('name','phone','address','date','email','total','quantity','avatar','note');
 
         $items = $request['item'];
-        
+
         $validated = $request->validate([
             'name' => 'required|string|max:25',
             'phone' => 'required|digits:10',
@@ -65,19 +57,10 @@ class OrderController extends Controller
             'note' => 'max:300'
         ]);
 
-        // if ($request->hasFile('avatar')) {
-        //     $path = $request->file('avatar')->storeAs(
-        //         'imgs',
-        //         $request->file('avatar')->getClientOriginalName(),
-        //         'public'
-        //     );
-        //     $params['avatar']=$path;
-        // }
-        
-        //apply traits
-        $params['avatar'] = $this->verifyAndStoreImage($request,'avatar','orders');
+        // //apply traits
+        $params['avatar'] = $this->verifyAndStoreImage($request, 'avatar', 'orders');
 
-        $order= $this->orderRepo->storeOrder($params, $items);
+        $order = $this->orderRepo->storeOrder($params, $items);
 
         $result = array(
             'status' => '200',
@@ -96,15 +79,15 @@ class OrderController extends Controller
     public function show(Request $request)
     {
         $id = $request->id;
-        $order= $this->orderRepo->find($id);
+        $order = $this->orderRepo->find($id);
         $productOrder = $this->productOrder->getProductsOfOrder($id);
         $products = $this->productRepo->getAll();
         $result = array(
-            'order'=>$order,
-            'productOrder'=>$productOrder,
-            'products'=>$products
+            'order' => $order,
+            'productOrder' => $productOrder,
+            'products' => $products
         );
-        
+
         if ($request->ajax()) {
             return view('order.form-order')->with('orderItem', $order)->with('dataProduct', $products)->with('productOfOrder', $productOrder);
         };
@@ -164,7 +147,11 @@ class OrderController extends Controller
             'note' => 'max:300'
         ]);
         
-        $params['avatar'] = $this->verifyAndStoreImage($request,'avatar','orders');
+        $imgUpdate = $this->verifyAndStoreImage($request, 'avatar', 'orders');
+        
+        if($imgUpdate != null){
+            $params['avatar'] = $imgUpdate;
+        }
 
         $this->orderRepo->updateOrder($params, $items);
         $result = array(

@@ -19,7 +19,7 @@
             })
 
             // When the user clicks anywhere outside of the modal, close it
-            var modal = $('#myModal').get(0); 
+            var modal = $('#myModal').get(0);
 
             window.onclick = function (event) {
                 if (event.target == modal) {
@@ -41,9 +41,9 @@
             })
 
             //ckeditor
-            CKEDITOR.replace('note-order');
-            // CKEDITOR.replace('edit-order-note');
-            // var editor = $( '#edit-order-note' ).ckeditor();
+            el.editor = CKEDITOR.replace('note-order', {
+                height: 100
+            });
 
             $('.item-check, .quantity-product, #selectAllProduct').on('keypress change', function (e) {
                 update_amount();
@@ -65,7 +65,7 @@
                         sum += price * qty;
                         total_quantity += 1 * qty;
                     }
-                    else{
+                    else {
                         var quantity = $(this).find('.quantity-product');
                         quantity.attr("disabled", true);
                         var qty = quantity.val(0);
@@ -139,11 +139,13 @@
                 event.preventDefault();
                 var formData = new FormData(this);
                 console.log('formData' + formData);
-                console.log('test', $('#file-avatar').prop("files")[0]);
+                // console.log('test', $('#file-avatar').prop("files")[0]);
                 var file_avatar = $('#file-avatar').prop("files")[0];
                 if (file_avatar != undefined) {
                     formData.append('avatar', file_avatar);
                 }
+                // console.log('note',el.editor.getData())
+                formData.append('note',el.editor.getData())
 
                 try {
                     $.ajax({
@@ -159,7 +161,7 @@
                             getListContent();
                             $('.modal').css("display", "none");
                             // $('#form-order').get(0).reset();
-                            $('.quantity-product').each(function(){
+                            $('.quantity-product').each(function () {
                                 $(this).prop('disabled', true);
                             })
                         },
@@ -250,8 +252,6 @@
                 var file_avatar = $('#edit-upload-order-avt').prop("files")[0];
                 if (file_avatar != undefined) {
                     formDataUpdate.append('avatar', file_avatar);
-                } else {
-                    // formDataUpdate.append('avatar', $('#edit-order-avt'));
                 }
                 console.log($('#edit-order-avt'), $('#edit-upload-order-avt'));
                 var q = $('.quantity-product-edit-order');
@@ -261,6 +261,7 @@
                         console.log(q[z].getAttribute('name'), q[z].value);
                     }
                 }
+                formDataUpdate.append('note', el.editorUpdate.getData());
                 try {
                     $.ajax({
                         type: 'post',
@@ -318,6 +319,10 @@
                         data: data,
                         success: function (res) {
                             $('#order-detail-modal').html(res);
+                            el.editorUpdate = CKEDITOR.replace('edit-order-form', {
+                                height: 100
+                            });
+                            
                         },
                         error: function (res) {
                         }
@@ -333,7 +338,7 @@
     $(document).ready(function () {
         var homeObj = new homeCls();
         homeObj.run();
-        
+
         $(window).resize(function () {
             homeObj.resize();
         });

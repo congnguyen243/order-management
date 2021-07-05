@@ -19,36 +19,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $row)
-                    <tr>
-                        <td>
-                            {{$row->id}}
-                        </td>
-                        <td style="width:80px">
-                            <img src="{{ asset($row->path) }}" style="width: 60px; height: 100px; object-fit: cover;">
-                        </td>
-                        <td style="width:220px">
-                            {{$row->name}}
-                        </td>
-                        <td style="width:220px">
-                            {{$row->content}}
-                        </td>
-                        <td>
-                            {{$row->price}}
-                        </td>
-                        <td>
-                            {{$row->memory}}
-                        </td>
-                        <td>
-                            {{$row->stock}}
-                        </td>
-                        <td style="width:160px">
-                            <a data-product="{{$row->id}}" class=" btn btn-primary" id="btn-edit-product">Edit</a>
-                            &nbsp;
-                            <a data-product="{{$row->id}}" class="btn-delete btn btn-secondary"
-                                id="btn-delete-product">Delete</a>
-                        </td>
-                    </tr>
+                    @foreach ($products as $row)
+                        <tr>
+                            <td>
+                                {{ $row->id }}
+                            </td>
+                            <td style="width:80px">
+                                <img src="{{ asset($row->path) }}"
+                                    style="width: 60px; height: 100px; object-fit: cover;">
+                            </td>
+                            <td style="width:220px">
+                                {{ $row->name }}
+                            </td>
+                            <td style="width:220px">
+                                {{ $row->content }}
+                            </td>
+                            <td>
+                                {{ $row->price }}
+                            </td>
+                            <td>
+                                {{ $row->memory }}
+                            </td>
+                            <td>
+                                {{ $row->stock }}
+                            </td>
+                            <td style="width:160px">
+                                <a data-product="{{ $row->id }}" class=" btn btn-primary"
+                                    id="btn-edit-product">Edit</a>
+                                &nbsp;
+                                <a data-product="{{ $row->id }}" class="btn-delete btn btn-secondary"
+                                    id="btn-delete-product">Delete</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
