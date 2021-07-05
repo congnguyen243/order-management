@@ -14,25 +14,25 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link text-info">
                             <i class="fas fa-tachometer-alt"></i>
                             Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="/orders" class="nav-link text-white">
+                        <a href="/orders" class="nav-link text-info">
                             <i class="fas fa-cart-plus"></i>
                             Orders
                         </a>
                     </li>
                     <li>
-                        <a href="products" class="nav-link text-white">
+                        <a href="products" class="nav-link text-info">
                             <i class="fab fa-centercode"></i>
                             Products
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="#" class="nav-link text-info">
                             <i class="fas fa-user-friends"></i>
                             Customers
                         </a>

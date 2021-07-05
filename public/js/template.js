@@ -10,14 +10,12 @@
         };
 
         this.init = function () {
-            $('#btn-product-save').on('click',function(){
-                alert('Saved Product')
-            })
+            
         };
 
         this.bindEvents = function () {
             initSubmit();
-            ctrateProduct();
+            
         };
 
         this.resize = function () {
@@ -26,10 +24,6 @@
 
         var initSubmit = function () {
 
-        }
-
-        var ctrateProduct = function(){
-            
         }
 
     };
